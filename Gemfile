@@ -29,7 +29,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'hirb'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'faker'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -51,12 +51,25 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'faker'
+
 end
 
 group :production do
     # para usar ver los logs en production en consola
     gem 'rails_12factor'
 end
+
+  group :test do
+    gem 'rspec-rails', '~> 3.8'
+    gem 'capybara', '>= 2.15'
+    gem 'capybara-email'
+    gem 'selenium-webdriver', '~>2.53.4'
+    gem 'chromedriver-helper'
+  end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
