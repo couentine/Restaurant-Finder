@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12">
+            <h3 class="text-center">To look for:</h3>
+            <div class="forms">
+                <%= render 'form', action: 'zone' %>
+                <%= render 'form', action: 'restaurant' %>
+                <%= render 'form', action: 'specialty' %>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="restaurants">
+                <% @restaurants.each do |restaurant| %>
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h2 class= "text-center"><%= restaurant.name %></h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info">
+                                    <h4><strong> Speciality: </strong><%= restaurant.specialty.name %></h4>
+                                    <h4><strong> City: </strong> <%= get_cities(restaurant).uniq.join(", ") %> </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="image">
+                                    <img src="<%= restaurant.img_url %>" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center">Locales</h3>
+                                <div class="locals">
+                                    <% restaurant.locals.each do |local| %>
+                                        <div class="restaurant">
+                                            <%# if (local.zone.city.name == request.subdomain.humanize) %>
+                                                <h5><strong> Ciudad: </strong><%= local.zone.city.name %></h5>
+                                                <h5><strong> Teléfono: </strong><%= local.phone %></h5>
+                                                <h5> <%= "#{local.zone.address} Local: #{local.id}" %></h5>
+                                                <h5> <%= local.schedule %></h5>
+                                            <%# end %>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
